@@ -1,7 +1,10 @@
 package dev.foodie.diceroller
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.setThreadPolicy
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,7 +16,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        enableStrictMode()
+
         rollButton.setOnClickListener { rollDice() }
+    }
+
+    fun enableStrictMode() {
+        if (BuildConfig.DEBUG) {
+            val policy = StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build()
+
+            setThreadPolicy(policy)
+        }
     }
 
     fun rollDice() {

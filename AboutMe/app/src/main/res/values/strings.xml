@@ -1,0 +1,15 @@
+<resources>
+  <string name="app_name">About Me</string>
+  <string name="name">Fouad Olaore</string>
+  <string name="yellow_star">Yellow Star</string>
+  <string name="bio_data">
+    Hi!, my name is Olaore Fouad\n
+    I really do not know a lot about what I like or don\'t. But if anything is dear to me, it\'s my family.\n
+    They mean the world to me, and I can do anything for them. They keep pushing mentally, and they keep giving me a reason to keep learning.\n\n
+    I also love eating food, people call me Foodie too. Not because of my eating habits, but because my first name is: Fouad. Get it.\n\n
+    I am also a developer of amazing applications. All of which are on my emulator, or on my browser history\n\n
+    If you know&#8320; you know&#8320;
+  </string>
+  <string name="what_is_your_nickname">What is your Nickname?</string>
+  <string name="done">Done</string>
+</resources>

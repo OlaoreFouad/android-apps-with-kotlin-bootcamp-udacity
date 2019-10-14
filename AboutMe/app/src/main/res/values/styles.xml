@@ -8,11 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-  <style name="WhiteBox">
-    <item name="android:textAlignment">center</item>
-    <item name="android:textSize">24sp</item>
-    <item name="android:textColor">@android:color/white</item>
-    <item name="android:background">@android:color/white</item>
+  <style name="NameStyle">
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textColor">@android:color/black</item>
+    <item name="android:paddingTop">@dimen/small_padding</item>
+    <item name="android:layout_marginTop">@dimen/layout_margin</item>
   </style>
 
 </resources>
