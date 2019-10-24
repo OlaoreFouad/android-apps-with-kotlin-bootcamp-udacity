@@ -9,8 +9,13 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
+import com.example.android.dessertpusher.DessertTimer
 import dev.foodie.dessertpusher.databinding.ActivityMainBinding
 import timber.log.Timber
+
+const val KEY_REVENUE = "key_revenue"
+const val KEY_DESSERTS_SOLD = "key_desserts_sold"
+const val KEY_SECONDS_COUNT = "key_seconds_count"
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private var dessertsSold = 0
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var dessertTimer: DessertTimer
 
     data class Dessert(val imageId: Int, val price: Int, val startProductionAmount: Int)
     private val allDesserts = listOf(
@@ -46,7 +52,21 @@ class MainActivity : AppCompatActivity() {
 
         Timber.i("onCreate called!")
 
+        dessertTimer = DessertTimer(lifecycle)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        savedInstanceState?.apply {
+            revenue = getInt(KEY_REVENUE)
+            dessertsSold = getInt(KEY_DESSERTS_SOLD)
+            val secondsCount = getInt(KEY_SECONDS_COUNT)
+
+            Timber.i("Revenue: $revenue\nDesserts sold: $dessertsSold\n Seconds count: $secondsCount")
+        }
+
+//        if (savedInstanceState != null) {
+
+//        }
+
         binding.revenue = revenue
         binding.amountSold = dessertsSold
 
@@ -115,5 +135,45 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Timber.i("onStart called!")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Timber.i("onRestoreInstanceState called!")
+        savedInstanceState.apply {
+            revenue = getInt(KEY_REVENUE)
+            dessertsSold = getInt(KEY_DESSERTS_SOLD)
+            val secondsCount = getInt(KEY_SECONDS_COUNT)
+
+            Timber.i("Revenue: $revenue\nDesserts sold: $dessertsSold\n Seconds count: $secondsCount")
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.i("onStop called!")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_REVENUE, revenue)
+        outState.putInt(KEY_DESSERTS_SOLD, dessertsSold)
+        outState.putInt(KEY_SECONDS_COUNT, dessertTimer.secondsCount)
+        Timber.i("onSaveInstance state called!")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Timber.i("onPause called!")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.i("onResume called!")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.i("onDestroy called!")
     }
 }
