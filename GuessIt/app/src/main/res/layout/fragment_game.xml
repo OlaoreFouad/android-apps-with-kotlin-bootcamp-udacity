@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:context="dev.foodie.guessit.fragments.GameFragment">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+      android:id="@+id/get_ready_to_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/the_word_is_text"
+      android:textAppearance="@style/TextAppearance.AppCompat.Small"
+      android:textColor="@color/black_text_color"
+      android:textSize="18sp"
+      app:layout_constraintBottom_toTopOf="@id/word_text"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias=".9" />
+
+    <TextView
+      android:id="@+id/word_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="@style/TextAppearance.AppCompat.Large"
+      android:textSize="30sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias=".4"
+      tools:text="@string/placeholder_text" />
+
+    <TextView
+      android:id="@+id/timer_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="5dp"
+      android:text="@string/placeholder_timer_text"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toTopOf="@id/current_score_text"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+      android:id="@+id/current_score_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="5dp"
+      android:text="@string/placeholder_current_score_text"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      app:layout_constraintBottom_toTopOf="@id/skip_button"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+      android:id="@+id/skip_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="10dp"
+      android:text="@string/skip_text"
+      android:theme="@style/SkipButton"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+      android:id="@+id/got_it_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="10dp"
+      android:text="@string/got_it_text"
+      android:theme="@style/GoButton"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -10,8 +10,9 @@
     android:name="dev.foodie.androidtrivia.TitleFragment"
     android:label="TitleFragment">
     <action
-      android:id="@+id/action_titleFragment2_to_gameFragment"
-      app:destination="@id/gameFragment" />
+            android:id="@+id/action_titleFragment2_to_gameFragment"
+            app:destination="@id/gameFragment" app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_in_right"/>
   </fragment>
   <fragment
     android:id="@+id/gameFragment"
@@ -19,15 +20,15 @@
     android:label="fragment_game"
     tools:layout="@layout/fragment_game">
     <action
-      android:id="@+id/action_gameFragment_to_gameWonFragment"
-      app:destination="@id/gameWonFragment"
-      app:popUpTo="@+id/gameFragment"
-      app:popUpToInclusive="true" />
+            android:id="@+id/action_gameFragment_to_gameWonFragment"
+            app:destination="@id/gameWonFragment"
+            app:popUpTo="@+id/gameFragment"
+            app:popUpToInclusive="true" app:enterAnim="@anim/fade_in" app:exitAnim="@anim/fade_out"/>
     <action
-      android:id="@+id/action_gameFragment_to_gameOverFragment2"
-      app:destination="@id/gameOverFragment2"
-      app:popUpTo="@+id/gameFragment"
-      app:popUpToInclusive="true" />
+            android:id="@+id/action_gameFragment_to_gameOverFragment2"
+            app:destination="@id/gameOverFragment2"
+            app:popUpTo="@+id/gameFragment"
+            app:popUpToInclusive="true" app:enterAnim="@anim/fade_in" app:exitAnim="@anim/fade_out"/>
   </fragment>
   <fragment
     android:id="@+id/gameWonFragment"
@@ -38,6 +39,8 @@
       app:destination="@id/gameFragment"
       app:popUpTo="@+id/titleFragment2"
       app:popUpToInclusive="false" />
+    <argument android:name="numQuestions" app:argType="integer"/>
+    <argument android:name="numCorrect" app:argType="integer"/>
   </fragment>
   <fragment
     android:id="@+id/gameOverFragment2"
@@ -47,6 +50,8 @@
       android:id="@+id/action_gameOverFragment2_to_gameFragment"
       app:destination="@id/gameFragment"
       app:popUpTo="@+id/titleFragment2" />
+    <argument android:name="numCorrect" app:argType="integer"/>
+    <argument android:name="numQuestions" app:argType="integer"/>
   </fragment>
   <fragment
     android:id="@+id/aboutFragment"

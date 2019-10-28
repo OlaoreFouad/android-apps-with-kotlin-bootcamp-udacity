@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
-package com.example.android.navigation
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.example.android.navigation.GameOverFragmentDirections
+import com.example.android.navigation.GameWonFragmentArgs
 import dev.foodie.androidtrivia.databinding.FragmentGameOverBinding
 import dev.foodie.androidtrivia.R
 
@@ -34,8 +35,12 @@ class GameOverFragment : Fragment() {
                 inflater, R.layout.fragment_game_over, container, false)
 
         binding.tryAgainButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_gameOverFragment2_to_gameFragment)
+            it.findNavController().navigate(GameOverFragmentDirections.actionGameOverFragment2ToGameFragment())
         }
+
+        val args = GameWonFragmentArgs.fromBundle(arguments)
+        Toast.makeText(context, "NumQuestions: ${args.numQuestions}, NumCorrect: ${args.numCorrect}", Toast.LENGTH_LONG).show()
+
         return binding.root
     }
 }

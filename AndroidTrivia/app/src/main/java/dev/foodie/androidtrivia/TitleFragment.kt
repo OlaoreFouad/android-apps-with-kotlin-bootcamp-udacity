@@ -20,7 +20,7 @@ class TitleFragment : Fragment() {
         )
 
         binding.playButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_titleFragment2_to_gameFragment)
+            it.findNavController().navigate(TitleFragmentDirections.actionTitleFragment2ToGameFragment())
         }
 
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
