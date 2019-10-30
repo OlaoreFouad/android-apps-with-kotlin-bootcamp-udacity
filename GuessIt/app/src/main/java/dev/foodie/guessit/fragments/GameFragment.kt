@@ -42,8 +42,14 @@ class GameFragment : Fragment() {
 
         viewModel.score.observe(this, Observer { binding.currentScoreText.text = "Current score is: ${ it }" })
         viewModel.word.observe(this, Observer { binding.wordText.text = "\"${ it }\"" })
+        viewModel.timerPoint.observe(this, Observer {
+            binding.timerText.text = "00:${ if (it < 10) "0$it" else it }"
+        })
         viewModel.gameState.observe(this, Observer {
-            if (it) gameFinished(viewModel.score.value ?: 0)
+            if (it) {
+                gameFinished(viewModel.score.value ?: 0)
+                viewModel.onGameFinished()
+            }
         })
 
         return binding.root

@@ -1,5 +1,6 @@
 package dev.foodie.guessit.viewmodels
 
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -11,16 +12,34 @@ class GameViewModel : ViewModel() {
     var word = MutableLiveData<String>()
     var score = MutableLiveData<Int>()
     var gameState = MutableLiveData<Boolean>()
+    var timerPoint = MutableLiveData<Int>()
+
+    companion object {
+        val NUM_OF_SECONDS = 60000L
+        val INTERVAL = 1000L
+    }
 
     private lateinit var wordsList: MutableList<String>
+    private var timer: CountDownTimer
 
     init {
         Log.i("GameFragment", "GameFragment created for the first time!!!")
         resetList()
         nextWord()
         score.value = 0
-        word.value = ""
         gameState.value = false
+        timerPoint.value = 60
+
+        timer = object : CountDownTimer(NUM_OF_SECONDS, INTERVAL) {
+            override fun onFinish() {
+                gameState.value = true
+            }
+
+            override fun onTick(p0: Long) {
+                timerPoint.value = p0.div(1000).toInt()
+            }
+        }
+        timer.start()
     }
 
     override fun onCleared() {
@@ -57,10 +76,9 @@ class GameViewModel : ViewModel() {
 
     private fun nextWord() {
         if (wordsList.isEmpty()) {
-            gameState.value = true
-        } else {
-            word.value = wordsList.removeAt(0)
+            resetList()
         }
+        word.value = wordsList.removeAt(0)
     }
 
     fun onSkip() {
@@ -73,4 +91,10 @@ class GameViewModel : ViewModel() {
         nextWord()
     }
 
+    // function that resets the value held by the gameFinished live data to false, once it has been set to true.
+    // This is so it happens once
+
+    fun onGameFinished() {
+        gameState.value = false
+    }
 }
