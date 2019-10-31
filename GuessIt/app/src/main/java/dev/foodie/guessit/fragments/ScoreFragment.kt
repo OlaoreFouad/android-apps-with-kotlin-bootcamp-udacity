@@ -30,12 +30,10 @@ class ScoreFragment : Fragment() {
                container,
                false
        )
+
        viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(arguments).score)
        viewModel = ViewModelProviders.of(this, viewModelFactory)
            .get(ScoreViewModel::class.java)
-
-        val args = ScoreFragmentArgs.fromBundle(arguments)
-        binding.scoreText.text = args.score.toString()
 
         binding.playAgainButton.setOnClickListener {
             it.findNavController().navigate(ScoreFragmentDirections.actionScoreFragmentToGameFragment())

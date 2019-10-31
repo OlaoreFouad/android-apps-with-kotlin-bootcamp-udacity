@@ -37,8 +37,7 @@ class GameFragment : Fragment() {
         Log.i("GameFragment", "GameViewModel created!")
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
-        binding.gotItButton.setOnClickListener { viewModel.onCorrect() }
-        binding.skipButton.setOnClickListener { viewModel.onSkip() }
+        binding.gameViewModel = viewModel
 
         viewModel.score.observe(this, Observer { binding.currentScoreText.text = "Current score is: ${ it }" })
         viewModel.word.observe(this, Observer { binding.wordText.text = "\"${ it }\"" })

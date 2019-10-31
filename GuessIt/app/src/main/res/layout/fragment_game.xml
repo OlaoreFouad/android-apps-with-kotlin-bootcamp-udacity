@@ -4,6 +4,12 @@
   xmlns:tools="http://schemas.android.com/tools"
   tools:context="dev.foodie.guessit.fragments.GameFragment">
 
+    <data>
+
+        <variable name="gameViewModel" type="dev.foodie.guessit.viewmodels.GameViewModel"/>
+
+    </data>
+
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -63,6 +69,7 @@
       android:layout_height="wrap_content"
       android:layout_margin="10dp"
       android:text="@string/skip_text"
+      android:onClick="@{ () -> gameViewModel.onSkip() }"
       android:theme="@style/SkipButton"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent" />
@@ -71,6 +78,7 @@
       android:id="@+id/got_it_button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:onClick="@{ () -> gameViewModel.onCorrect() }"
       android:layout_margin="10dp"
       android:text="@string/got_it_text"
       android:theme="@style/GoButton"

@@ -3,6 +3,10 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   tools:context="dev.foodie.guessit.fragments.ScoreFragment">
+  
+  <data>
+    <variable name="scoreViewModel" type="dev.foodie.guessit.viewmodels.ScoreViewModel"/>
+  </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_height="match_parent"
@@ -39,9 +43,11 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"
+      tools:text="40"
       app:layout_constraintTop_toBottomOf="@+id/you_scored_text"
       app:layout_constraintVertical_chainStyle="packed"
-      tools:text="40" />
+      android:text="@{ scoreViewModel.score }"
+    />
 
     <Button
       android:id="@+id/play_again_button"
