@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SleepTracker2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="start">Start</string>
+  <string name="stop">Stop</string>
+  <string name="clear">Clear</string>
+  <string name="here_is_your_sleep_data">Here is your sleep data</string>
+  <string name="how_was_your_sleep">How was your sleep?</string>
+</resources>
