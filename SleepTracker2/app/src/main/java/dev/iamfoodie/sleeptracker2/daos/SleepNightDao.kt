@@ -13,16 +13,16 @@ interface SleepNightDao {
     @Update
     fun update(night: SleepNight)
 
-    @Query("SELECT * FROM sleep_night_tbl")
+    @Query("SELECT * FROM sleep_night_tbl ORDER BY nightId DESC")
     fun getAllNights(): LiveData<List<SleepNight>>
 
     @Query("SELECT * FROM sleep_night_tbl WHERE nightId = :nightId")
-    fun getNight(nightId: Long): SleepNight
+    fun getNight(nightId: Long): SleepNight?
 
     @Query("DELETE FROM sleep_night_tbl")
     fun deleteAllNights()
 
     @Query("SELECT * FROM sleep_night_tbl ORDER BY nightId DESC LIMIT 1")
-    fun getTonight(): SleepNight
+    fun getTonight(): SleepNight?
 
 }

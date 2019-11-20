@@ -15,7 +15,7 @@ import dev.iamfoodie.sleeptracker2.models.SleepNight
 )
 abstract class SleepNightDatabase : RoomDatabase() {
 
-    public abstract val sleepDatabaseDao: SleepNightDao
+    abstract val sleepDatabaseDao: SleepNightDao
 
     companion object {
 
