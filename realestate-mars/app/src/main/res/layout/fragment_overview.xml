@@ -16,8 +16,8 @@
         <TextView
             android:layout_width="match_parent"
             android:id="@+id/api_response_text"
-            android:layout_height="match_parent"
-            android:text="@{ viewModel.response }" />
+            android:text="@{ viewModel.response }"
+            android:layout_height="match_parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
