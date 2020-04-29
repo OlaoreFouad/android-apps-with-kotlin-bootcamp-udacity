@@ -34,9 +34,17 @@ class OverviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewModel?.response?.observe(viewLifecycleOwner, Observer {
-            binding.apiResponseText.text = it
-        })
+
+        binding.viewModel?.let {
+            it.response.observe(viewLifecycleOwner, Observer {
+                binding.apiResponseText.text = it
+            })
+            it.property.observe(viewLifecycleOwner, Observer { prop ->
+                println("debug: $prop")
+                binding.imageUrl = prop.imgSrcUrl
+            })
+        }
+
     }
 
 }
