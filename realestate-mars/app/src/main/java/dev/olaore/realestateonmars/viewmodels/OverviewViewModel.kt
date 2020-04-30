@@ -9,23 +9,26 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.lang.Exception
+
+// class to denote status of the mars api request
+enum class MarsApiStatus { DONE, ERROR }
 
 class OverviewViewModel : ViewModel() {
 
     private val _response = MutableLiveData<String>()
-    private val _property = MutableLiveData<MarsProperty>()
+    private val _properties = MutableLiveData<List<MarsProperty>>()
+    private val _status = MutableLiveData<MarsApiStatus>()
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     val response: LiveData<String>
         get() = _response
-    val property: LiveData<MarsProperty>
-        get() = _property
+    val properties: LiveData<List<MarsProperty>>
+        get() = _properties
+    val status: LiveData<MarsApiStatus>
+        get() = _status
 
     init {
         getProperties()
@@ -39,10 +42,10 @@ class OverviewViewModel : ViewModel() {
             var defferedList = MarsApi.retrofitService.getProperties()
             try {
                 var actualList = defferedList.await()
-                setResponse("Success: ${ actualList.size } mars objects were retrieved!")
-                _property.value = actualList.first()
+                _status.value = MarsApiStatus.DONE
+                _properties.value = actualList
             } catch (e: Exception) {
-                setResponse(e.message)
+                _status.value = MarsApiStatus.ERROR
             }
 
 

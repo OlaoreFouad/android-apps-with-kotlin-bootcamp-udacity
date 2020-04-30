@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import dev.olaore.realestateonmars.PhotoGridAdapter
 
 import dev.olaore.realestateonmars.R
 import dev.olaore.realestateonmars.databinding.FragmentOverviewBinding
@@ -35,15 +36,8 @@ class OverviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel?.let {
-            it.response.observe(viewLifecycleOwner, Observer {
-                binding.apiResponseText.text = it
-            })
-            it.property.observe(viewLifecycleOwner, Observer { prop ->
-                println("debug: $prop")
-                binding.imageUrl = prop.imgSrcUrl
-            })
-        }
+        binding.lifecycleOwner = this
+        binding.propertiesList.adapter = PhotoGridAdapter()
 
     }
 
