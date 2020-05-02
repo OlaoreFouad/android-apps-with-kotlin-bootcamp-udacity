@@ -40,6 +40,7 @@ class PhotoGridAdapter(
 
         init {
             binding.root.setOnClickListener {
+                println("adapter: item at index $adapterPosition clicked! ")
                 onClickListener.clickListener(binding.property!!)
             }
         }

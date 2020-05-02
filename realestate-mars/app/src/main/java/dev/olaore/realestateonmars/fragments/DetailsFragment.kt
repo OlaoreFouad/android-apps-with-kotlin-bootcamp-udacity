@@ -40,6 +40,8 @@ class DetailsFragment : Fragment() {
             this, detailsViewModelFactory
         ).get(DetailsViewModel::class.java)
 
+        binding.viewModel = detailsViewModel
+
     }
 
 }

@@ -39,11 +39,13 @@ class OverviewFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.propertiesList.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener {
+            println("adapter: $it")
             viewModel.onPropertySelected(it)
         })
 
         viewModel.navigateToDetails.observe(viewLifecycleOwner, Observer {
-            OverviewFragmentDirections.actionOverviewFragmentToDetailsFragment(it)
+            println("adapter: $it")
+            findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailsFragment(it))
         })
 
     }
