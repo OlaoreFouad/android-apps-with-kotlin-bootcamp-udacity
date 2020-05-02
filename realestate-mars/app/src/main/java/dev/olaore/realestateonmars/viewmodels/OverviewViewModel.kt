@@ -19,6 +19,7 @@ class OverviewViewModel : ViewModel() {
     private val _response = MutableLiveData<String>()
     private val _properties = MutableLiveData<List<MarsProperty>>()
     private val _status = MutableLiveData<MarsApiStatus>()
+    private val _navigateToDetails = MutableLiveData<MarsProperty>()
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -29,6 +30,8 @@ class OverviewViewModel : ViewModel() {
         get() = _properties
     val status: LiveData<MarsApiStatus>
         get() = _status
+    val navigateToDetails: LiveData<MarsProperty>
+        get() = _navigateToDetails
 
     init {
         getProperties()
@@ -55,6 +58,14 @@ class OverviewViewModel : ViewModel() {
     fun setResponse(message: String?) {
         println("debug: from@setResponse $message")
         _response.value = message
+    }
+
+    fun onPropertySelected(marsProperty: MarsProperty) {
+        _navigateToDetails.value = marsProperty
+    }
+
+    fun onPropertySelectionComplete() {
+        _navigateToDetails.value = null
     }
 
 }

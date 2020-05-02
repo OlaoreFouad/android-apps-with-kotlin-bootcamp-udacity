@@ -14,5 +14,9 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="dev.olaore.realestateonmars.fragments.DetailsFragment"
-        android:label="DetailsFragment" />
+        android:label="DetailsFragment" >
+        <argument
+            android:name="selectedProperty"
+            app:argType="dev.olaore.realestateonmars.models.MarsProperty" />
+    </fragment>
 </navigation>

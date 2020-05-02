@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.olaore.realestateonmars.databinding.PropertyItemBinding
 import dev.olaore.realestateonmars.models.MarsProperty
 
-class PhotoGridAdapter()
+class PhotoGridAdapter(
+        private val onClickListener: OnClickListener
+    )
     : ListAdapter<MarsProperty, PhotoGridAdapter.PhotoViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
-        return PhotoViewHolder(PropertyItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return PhotoViewHolder(PropertyItemBinding.inflate(LayoutInflater.from(parent.context)), onClickListener)
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
@@ -34,7 +36,13 @@ class PhotoGridAdapter()
         }
     }
 
-    class PhotoViewHolder(private val binding: PropertyItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class PhotoViewHolder(private val binding: PropertyItemBinding, private val onClickListener: OnClickListener) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                onClickListener.clickListener(binding.property!!)
+            }
+        }
 
         fun bind(property: MarsProperty) {
             binding.property = property
@@ -42,5 +50,7 @@ class PhotoGridAdapter()
         }
 
     }
+
+    class OnClickListener(var clickListener: (marsProperty: MarsProperty) -> Unit)
 
 }
